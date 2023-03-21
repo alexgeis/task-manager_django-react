@@ -1,15 +1,78 @@
 // import Component from the react module
 import React, { Component } from "react";
 // TODO: replace with own modal
+import TabList from "./components/TabList";
 import Modal from "./components/Modal";
 import axios from "axios";
 
+const activeItemInit = {
+	title: "",
+	description: "",
+	completed: false,
+};
+const TaskAppFUNC = () => {
+	const [viewCompleted, setViewCompleted] = useState(false);
+	const [activeItem, setActiveItem] = useState(activeItemInit);
+	const [taskList, setTaskList] = useState([]);
+	const [modalOpen, setModalOpen] = useState(false);
+
+	useEffect(() => {
+		refreshList();
+	}, []);
+
+	useEffect(async () => {
+		try {
+			const result = await axios("http://localhost:8000/api/tasks/");
+			console.log("CONFIRM", result.data);
+			setTaskList(result.data);
+		} catch (error) {
+			console.error(error);
+		}
+	});
+	// TODO: maybe replace w/ toggle?
+	const displayCompleted = (status) => {
+		return status ? setViewCompleted(true) : setViewCompleted(false);
+	};
+
+	return (
+		<main className="content">
+			<h1 className="text-success text-uppercase text-center my-4">
+				React/Django Task Manager
+			</h1>
+			<div className="row ">
+				<div className="col-md-6 col-sm-10 mx-auto p-0">
+					<div className="card p-3">
+						<div className="">
+							<button
+								onClick={this.createItem}
+								className="btn btn-info"
+							>
+								Add task
+							</button>
+						</div>
+						<TabList />
+						<ul className="list-group list-group-flush">
+							{this.renderItems()}
+						</ul>
+					</div>
+				</div>
+			</div>
+			{this.state.modal ? (
+				<Modal
+					activeItem={this.state.activeItem}
+					toggle={this.toggle}
+					onSave={this.handleSubmit}
+				/>
+			) : null}
+		</main>
+	);
+};
+
 // TODO: REPLACE WITH FUNCTION COMPONENT
 // create a class that extends the component
-class App extends Component {
+class TaskApp extends Component {
 	// add a constructor to take props
-	// TODO: replace this.state with useState hooks
-	//TODO: add model state
+
 	constructor(props) {
 		super(props);
 
@@ -29,12 +92,11 @@ class App extends Component {
 		};
 	}
 
-	//TODO: replace API call w/ useEffect
 	// Add componentDidMount()
 	componentDidMount() {
 		this.refreshList();
 	}
-	//TODO: replace with async await
+
 	refreshList = () => {
 		axios //Axios to send and receive HTTP requests
 			.get("http://localhost:8000/api/tasks/")
@@ -202,4 +264,4 @@ class App extends Component {
 		);
 	}
 }
-export default App;
+export default TaskApp;
