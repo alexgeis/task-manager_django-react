@@ -1,0 +1,24 @@
+{
+	"name": "task-manager_django-react",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "cd frontend && npm run dev",
+		"backend": "cd backend && python3 manage.py runserver",
+		"migrate": "cd backend && python3 manage.py makemigrations && python3 manage.py migrate",
+		"start": "npm run backend && npm run dev",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/alexgeis/task-manager_django-react.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/alexgeis/task-manager_django-react/issues"
+	},
+	"homepage": "https://github.com/alexgeis/task-manager_django-react#readme"
+}
