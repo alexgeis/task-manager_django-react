@@ -8,6 +8,7 @@
 		"backend": "cd backend && python3 manage.py runserver",
 		"migrate": "cd backend && python3 manage.py makemigrations && python3 manage.py migrate",
 		"start": "npm run backend && npm run dev",
+		"venv": ". venv/bin/activate",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
