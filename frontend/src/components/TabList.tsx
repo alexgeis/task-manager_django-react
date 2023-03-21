@@ -29,7 +29,9 @@ export default function TabList({
 			<span
 				onClick={() => displayCompleted(true)}
 				style={
-					viewCompleted ? `${styles.tabItem} ${styles.active}` : styles.tabItem
+					viewCompleted
+						? { ...styles.tabItem, ...styles.active }
+						: styles.tabItem
 				}
 			>
 				completed
@@ -37,7 +39,9 @@ export default function TabList({
 			<span
 				onClick={() => displayCompleted(false)}
 				style={
-					viewCompleted ? styles.tabItem : `${styles.tabItem} ${styles.active}`
+					viewCompleted
+						? styles.tabItem
+						: { ...styles.tabItem, ...styles.active }
 				}
 			>
 				Incompleted

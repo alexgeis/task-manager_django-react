@@ -50,7 +50,7 @@ export default function TaskItems({
 					<span
 						style={
 							viewCompleted
-								? `${styles.completeTask} ${styles.title}`
+								? { ...styles.completeTask, ...styles.title }
 								: styles.title
 						}
 						title={item.description}

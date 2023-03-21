@@ -7,7 +7,7 @@
 		"dev": "cd frontend && npm run dev",
 		"backend": "cd backend && python3 manage.py runserver",
 		"migrate": "cd backend && python3 manage.py makemigrations && python3 manage.py migrate",
-		"start": "npm run backend && npm run dev",
+		"start": "concurrently \"cd frontend && npm run dev\" \"cd backend && python3 manage.py runserver\"",
 		"venv": ". venv/bin/activate",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
@@ -21,5 +21,8 @@
 	"bugs": {
 		"url": "https://github.com/alexgeis/task-manager_django-react/issues"
 	},
-	"homepage": "https://github.com/alexgeis/task-manager_django-react#readme"
+	"homepage": "https://github.com/alexgeis/task-manager_django-react#readme",
+	"dependencies": {
+		"concurrently": "^7.6.0"
+	}
 }
