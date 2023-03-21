@@ -3,17 +3,25 @@ import React from "react";
 const styles: any = {
 	taskListItem: {
 		display: "flex",
-		justifyContent: "space between",
+		justifyContent: "space-between",
 		alignItems: "center",
 	},
 	title: {
 		marginRight: "2px",
+		cursor: "pointer",
 	},
 	completeTask: {
 		backgroundColor: "green",
 		color: "white",
+		textDecoration: "line-through",
+	},
+	btnContainer: {
+		marginTop: "0",
+		display: "flex",
+		gap: "10px",
 	},
 	btn: {
+		marginTop: "0",
 		borderRadius: "10px",
 	},
 	btnEdit: {
@@ -57,7 +65,7 @@ export default function TaskItems({
 					>
 						{item.title}
 					</span>
-					<span>
+					<span style={styles.btnContainer}>
 						<button
 							onClick={() => editItem(item)}
 							// style={`${styles.btn} ${styles.btnEdit}`}

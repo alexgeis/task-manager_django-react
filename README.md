@@ -7,3 +7,7 @@
     - [ ] - main app - center, add task btn
     - [ ] - task items - spacing
     - [ ] - modal - gross...
+
+EXTRA
+
+- [ ] - update form with FormData() object

@@ -5,34 +5,8 @@ import axios from "axios";
 import TaskItems from "./components/TaskItems";
 import TabList from "./components/TabList";
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import styles from "./TaskApp.module.css";
 
-const styles: any = {
-	container: {
-		width: "80%",
-		margin: "2px auto",
-	},
-	title: {
-		textTransform: "uppercase",
-		textAlign: "center",
-		margin: "10px auto",
-	},
-	taskContainer: {
-		display: "flex",
-		flexDirection: "column",
-		gap: "40px",
-	},
-	btnAdd: {
-		padding: "2px",
-		backgroundColor: "aqua",
-		color: "white",
-	},
-	taskList: {
-		display: "grid",
-		gridTemplateColumns: "1fr",
-		gridTemplateRows: "repeat(auto-fill, minmax(fit-content, 100px))",
-		padding: "3px",
-	},
-};
 const activeItemInit: TaskItem = {
 	title: "",
 	description: "",
@@ -54,14 +28,13 @@ export default function TaskApp(): JSX.Element {
 		try {
 			(async function fetchLatestTasks() {
 				const result = await axios("http://localhost:8000/api/tasks/");
-
-				console.log("CONFIRM", result.data);
 				setTaskList(result.data);
 			})();
 		} catch (error) {
 			console.error(error);
 		}
 	}, [activeItem]);
+
 	// TODO: maybe replace w/ toggle?
 	const displayCompleted = (status: boolean) => {
 		return status ? setViewCompleted(true) : setViewCompleted(false);
@@ -73,8 +46,7 @@ export default function TaskApp(): JSX.Element {
 	// TODO: may have to handle event
 	const handleSubmit = async (item: TaskItem) => {
 		modalToggle();
-		alert("save" + JSON.stringify(item));
-		// setActiveItem(item);
+		setActiveItem(item);
 		if (item.id) {
 			// if old post to edit and submit
 			await axios.put(`http://localhost:8000/api/tasks/${item.id}/`, item);
@@ -87,7 +59,7 @@ export default function TaskApp(): JSX.Element {
 	};
 	// Delete item
 	const handleDelete = async (item: TaskItem) => {
-		alert("delete" + JSON.stringify(item));
+		setActiveItem(item);
 		await axios.delete(`http://localhost:8000/api/tasks/${item.id}/`);
 		setActiveItem(activeItemInit);
 	};
@@ -105,12 +77,13 @@ export default function TaskApp(): JSX.Element {
 	};
 
 	return (
-		<main style={styles.container}>
-			<h1 style={styles.title}>React/Django Task Manager</h1>
-			<div style={styles.taskContainer}>
+		<main className={styles.container}>
+			<h1 className={styles.title}>Task Manager</h1>
+			<h3 className={styles.title}>Built w/ React / Django</h3>
+			<div className={styles.taskContainer}>
 				<button
 					onClick={createItem}
-					style={styles.btnAdd}
+					className={styles.btnAdd}
 				>
 					Add task
 				</button>
@@ -118,7 +91,7 @@ export default function TaskApp(): JSX.Element {
 					viewCompleted={viewCompleted}
 					displayCompleted={displayCompleted}
 				/>
-				<ul style={styles.taskList}>
+				<ul className={styles.taskList}>
 					<TaskItems
 						viewCompleted={viewCompleted}
 						taskList={taskList}
