@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 
 type TaskItem = {
-	id?: number;
+	id?: number | undefined;
 	title: string;
 	description: string;
 	completed: boolean;

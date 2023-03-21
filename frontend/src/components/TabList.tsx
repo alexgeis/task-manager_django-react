@@ -1,4 +1,4 @@
-const styles = {
+const styles: any = {
 	container: {
 		margin: "5px 0px",
 	},
@@ -14,7 +14,16 @@ const styles = {
 		color: "#fff",
 	},
 };
-export default TabList = ({ viewCompleted, displayCompleted }) => {
+
+type TabListProps = {
+	viewCompleted: boolean;
+	displayCompleted: (isDisplayed: boolean) => void;
+};
+
+export default function TabList({
+	viewCompleted,
+	displayCompleted,
+}: TabListProps) {
 	return (
 		<div style={styles.container}>
 			<span
@@ -35,4 +44,4 @@ export default TabList = ({ viewCompleted, displayCompleted }) => {
 			</span>
 		</div>
 	);
-};
+}

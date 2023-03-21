@@ -19,3 +19,21 @@
 	grid-row-gap: 0px;
 	z-index: 99;
 }
+
+.header {
+	text-align: center;
+}
+.body {
+	width: 100%;
+	margin: 5px auto;
+}
+.footer {
+	width: 100%;
+}
+.btnSubmit {
+	background-color: green;
+	color: white;
+}
+.formLabel {
+	text-decoration: underline;
+}

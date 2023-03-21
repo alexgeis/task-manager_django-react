@@ -1,6 +1,5 @@
 // import Component from the react module
-import React, { Component, CSSProperties, useEffect, useState } from "react";
-// TODO: replace with own modal
+import { useEffect, useState } from "react";
 import Modal from "./components/Modal";
 import axios from "axios";
 import TaskItems from "./components/TaskItems";
@@ -99,7 +98,6 @@ export default function TaskApp(): JSX.Element {
 		modalToggle();
 	};
 
-	//TODO: MODAL
 	return (
 		<main style={styles.container}>
 			<h1 style={styles.title}>React/Django Task Manager</h1>
@@ -126,6 +124,7 @@ export default function TaskApp(): JSX.Element {
 			{modalOpen && (
 				<Modal
 					activeItem={activeItem}
+					setActiveItem={setActiveItem}
 					toggle={modalToggle}
 					onSave={handleSubmit}
 				/>
