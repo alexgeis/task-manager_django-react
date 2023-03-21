@@ -4,6 +4,7 @@ import Modal from "./components/Modal";
 import axios from "axios";
 import TaskItems from "./components/TaskItems";
 import TabList from "./components/TabList";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 const styles: any = {
 	container: {
@@ -39,7 +40,12 @@ const activeItemInit: TaskItem = {
 };
 
 export default function TaskApp(): JSX.Element {
-	const [viewCompleted, setViewCompleted] = useState(false);
+	const [viewCompleted, setViewCompleted] = useLocalStorage(
+		"viewCompleted",
+		false
+	);
+
+	// const [viewCompleted, setViewCompleted] = useState(false);
 	const [activeItem, setActiveItem] = useState(activeItemInit);
 	const [taskList, setTaskList] = useState([]);
 	const [modalOpen, setModalOpen] = useState(false);
