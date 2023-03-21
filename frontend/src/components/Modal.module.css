@@ -12,9 +12,16 @@
 }
 
 .modalContentContainer {
+	width: 320px;
+	padding: 0 10px;
+	margin: 0 auto;
+
+	border: 1px white solid;
+	border-radius: 15px;
+
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: 1fr 3fr 1fr;
+	grid-template-rows: 1fr 2fr 1fr;
 	grid-column-gap: 0px;
 	grid-row-gap: 0px;
 	z-index: 99;
@@ -27,13 +34,36 @@
 	width: 100%;
 	margin: 5px auto;
 }
+
+form > fieldset {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+
+	border-radius: 15px;
+}
+
+.formLabel {
+	font-weight: bold;
+	display: flex;
+	justify-content: space-between;
+}
+.formLabel::placeholder {
+	text-decoration: none;
+}
+
+form input[type="checkbox"] {
+	margin-right: 80px;
+}
+
 .footer {
 	width: 100%;
+	padding: 0 0 10px;
+	display: flex;
+	justify-content: center;
 }
 .btnSubmit {
 	background-color: green;
 	color: white;
-}
-.formLabel {
-	text-decoration: underline;
 }

@@ -21,7 +21,7 @@ export default function Modal({
 			onClick={toggle}
 		>
 			<div
-				className={styles.modalContent}
+				className={styles.modalContentContainer}
 				onClick={(e: any) => {
 					e.preventDefault();
 					e.stopPropagation();
@@ -29,7 +29,7 @@ export default function Modal({
 					return false;
 				}}
 			>
-				<h2 className={styles.header}>Task Item</h2>
+				<h2 className={styles.header}>Add Task Item</h2>
 				<section className={styles.body}>
 					<form
 						action=""
@@ -41,7 +41,7 @@ export default function Modal({
 								htmlFor="title"
 								className={styles.formLabel}
 							>
-								Title
+								Title:
 								<input
 									type="text"
 									name="title"
@@ -54,7 +54,7 @@ export default function Modal({
 								htmlFor="description"
 								className={styles.formLabel}
 							>
-								Description
+								Description:
 								<input
 									type="text"
 									name="description"
@@ -68,7 +68,7 @@ export default function Modal({
 								htmlFor="completed"
 								className={styles.formLabel}
 							>
-								Completed
+								Completed:
 								<input
 									type="checkbox"
 									name="completed"

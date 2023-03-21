@@ -18,8 +18,6 @@ export default function TaskApp(): JSX.Element {
 		"viewCompleted",
 		false
 	);
-
-	// const [viewCompleted, setViewCompleted] = useState(false);
 	const [activeItem, setActiveItem] = useState(activeItemInit);
 	const [taskList, setTaskList] = useState([]);
 	const [modalOpen, setModalOpen] = useState(false);
@@ -35,7 +33,6 @@ export default function TaskApp(): JSX.Element {
 		}
 	}, [activeItem]);
 
-	// TODO: maybe replace w/ toggle?
 	const displayCompleted = (status: boolean) => {
 		return status ? setViewCompleted(true) : setViewCompleted(false);
 	};
@@ -43,7 +40,7 @@ export default function TaskApp(): JSX.Element {
 	const modalToggle = () => {
 		setModalOpen((modalOpen) => !modalOpen);
 	};
-	// TODO: may have to handle event
+
 	const handleSubmit = async (item: TaskItem) => {
 		modalToggle();
 		setActiveItem(item);
@@ -57,6 +54,7 @@ export default function TaskApp(): JSX.Element {
 		await axios.post("http://localhost:8000/api/tasks/", item);
 		setActiveItem(activeItemInit);
 	};
+
 	// Delete item
 	const handleDelete = async (item: TaskItem) => {
 		setActiveItem(item);
@@ -69,7 +67,6 @@ export default function TaskApp(): JSX.Element {
 		setActiveItem(item);
 		modalToggle();
 	};
-
 	//Edit item
 	const editItem = (item: TaskItem) => {
 		setActiveItem(item);
