@@ -17,10 +17,6 @@ const TaskAppFUNC = () => {
 	const [taskList, setTaskList] = useState([]);
 	const [modalOpen, setModalOpen] = useState(false);
 
-	useEffect(() => {
-		refreshList();
-	}, []);
-
 	useEffect(async () => {
 		try {
 			const result = await axios("http://localhost:8000/api/tasks/");
@@ -29,10 +25,32 @@ const TaskAppFUNC = () => {
 		} catch (error) {
 			console.error(error);
 		}
-	});
+	}, [activeItem]);
 	// TODO: maybe replace w/ toggle?
 	const displayCompleted = (status) => {
 		return status ? setViewCompleted(true) : setViewCompleted(false);
+	};
+	// TODO: may have to handle event
+	handleSubmit = (item) => {};
+
+	// Delete item
+	handleDelete = async (item) => {
+		alert("delete" + JSON.stringify(item));
+		await axios.delete(`http://localhost:8000/api/tasks/${item.id}/`);
+		setActiveItem(activeItemInit);
+		// .then((res) => this.refreshList());
+	};
+	// Create item
+	createItem = async () => {
+		const item = { title: "", description: "", completed: false };
+		setActiveItem(item);
+		setModalOpen((modalOpen) => !modalOpen);
+	};
+
+	//Edit item
+	editItem = (item) => {
+		setActiveItem(item);
+		setModalOpen((modalOpen) => !modalOpen);
 	};
 
 	return (
@@ -143,9 +161,6 @@ class TaskApp extends Component {
 		);
 	};
 
-	//TODO: pass down completed tasks prop, and click handlers edit/delete
-	//TODO: replace styling
-	//TODO: replace w/ useState hooks
 	// Main variable to render items on the screen
 	renderItems = () => {
 		const { viewCompleted } = this.state;
