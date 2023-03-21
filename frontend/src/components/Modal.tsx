@@ -20,7 +20,15 @@ export default function Modal({
 			className={styles.modalOverlay}
 			onClick={toggle}
 		>
-			<div className={styles.modalContent}>
+			<div
+				className={styles.modalContent}
+				onClick={(e: any) => {
+					e.preventDefault();
+					e.stopPropagation();
+					e.stopImmediatePropagation();
+					return false;
+				}}
+			>
 				<h2 className={styles.header}>Task Item</h2>
 				<section className={styles.body}>
 					<form

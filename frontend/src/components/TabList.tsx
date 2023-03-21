@@ -15,11 +15,6 @@ const styles: any = {
 	},
 };
 
-type TabListProps = {
-	viewCompleted: boolean;
-	displayCompleted: (isDisplayed: boolean) => void;
-};
-
 export default function TabList({
 	viewCompleted,
 	displayCompleted,
