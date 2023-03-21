@@ -1,32 +1,63 @@
 import React from "react";
 
-export default TaskItems = ({ viewCompleted, taskList }) => {
-	const newItems = this.state.taskList.filter(
-		(item) => item.completed === viewCompleted
-	);
-	return newItems.map((item) => (
+const styles = {
+	taskListItem: {
+		display: "flex",
+		justifyContent: "space between",
+		alignItems: "center",
+	},
+	title: {
+		marginRight: "2px",
+	},
+	completeTask: {
+		backgroundColor: "green",
+		color: "white",
+	},
+	btn: {
+		borderRadius: "10px",
+	},
+	btnEdit: {
+		marginRight: "2px",
+	},
+	btnDelete: {
+		backgroundColor: "red",
+		color: "white",
+	},
+};
+
+export default TaskItems = ({
+	viewCompleted,
+	taskList,
+	editItem,
+	handleDelete,
+}) => {
+	const newItems = taskList.filter((item) => item.completed === viewCompleted);
+
+	return newItems.map((item, i) => (
 		<li
 			key={item.id}
-			className="list-group-item d-flex justify-content-between align-items-center"
+			style={styles.taskListItem}
 		>
 			<span
-				className={`todo-title mr-2 ${
-					this.state.viewCompleted ? "completed-todo" : ""
-				}`}
+				style={
+					viewCompleted
+						? `${styles.completeTask} ${styles.title}`
+						: styles.title
+				}
 				title={item.description}
 			>
 				{item.title}
 			</span>
 			<span>
 				<button
-					onClick={() => this.editItem(item)}
-					className="btn btn-secondary mr-2"
+					onClick={() => editItem(item)}
+					style={`${styles.btn} ${styles.btnEdit}`}
 				>
 					Edit
 				</button>
 				<button
-					onClick={() => this.handleDelete(item)}
-					className="btn btn-danger"
+					onClick={() => handleDelete(item)}
+					style={`${styles.btn} ${styles.btnDelete}`}
 				>
 					Delete
 				</button>
