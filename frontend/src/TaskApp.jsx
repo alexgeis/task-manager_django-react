@@ -4,6 +4,7 @@ import React, { Component } from "react";
 import TabList from "./components/TabList";
 import Modal from "./components/Modal";
 import axios from "axios";
+import TaskItems from "./components/TaskItems";
 
 const activeItemInit = {
 	title: "",
@@ -50,9 +51,15 @@ const TaskAppFUNC = () => {
 								Add task
 							</button>
 						</div>
-						<TabList />
+						<TabList
+							viewCompleted={viewCompleted}
+							displayCompleted={displayCompleted}
+						/>
 						<ul className="list-group list-group-flush">
-							{this.renderItems()}
+							<TaskItems
+								viewCompleted={viewCompleted}
+								taskList={taskList}
+							/>
 						</ul>
 					</div>
 				</div>
@@ -115,10 +122,6 @@ class TaskApp extends Component {
 		return this.setState({ viewCompleted: false });
 	};
 
-	//TODO: replace class component render function w/ functional component return
-	//TODO: update styling
-	//TODO: update event handlers
-	//TODO: extract into separate component
 	// this array function renders two spans that help control
 	// the set of items to be displayed(ie, completed or incomplete)
 	renderTabList = () => {
@@ -139,7 +142,7 @@ class TaskApp extends Component {
 			</div>
 		);
 	};
-	//TODO: extract into separate component
+
 	//TODO: pass down completed tasks prop, and click handlers edit/delete
 	//TODO: replace styling
 	//TODO: replace w/ useState hooks
